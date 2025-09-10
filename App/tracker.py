@@ -37,6 +37,7 @@ newy = int((screenheight/2) - (tinggi/2))
 
 window.geometry(f"{lebar}x{tinggi}+{newx}+{newy}")
 
+
 #List simpan data 
 data_keuangan = []
 
@@ -55,6 +56,20 @@ def tambah_data():
     except ValueError:
         messagebox.showerror("Error", "Jumlah harus dimasukkan berupa angka!")
     return
+
+#Simpan Data
+data_keuangan.append((kategori, jumlah))
+
+#Add to tabel
+tabel.insert("", "end", values=(kategori, jumlah))
+
+#Kosongkan input
+entry_kategori.delete(0, tk.END)
+entry_jumlah.delete(0, tk.END)
+
+#Function untuk hitung saldo
+
+
 
 
 
