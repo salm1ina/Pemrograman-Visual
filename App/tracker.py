@@ -37,6 +37,25 @@ newy = int((screenheight/2) - (tinggi/2))
 
 window.geometry(f"{lebar}x{tinggi}+{newx}+{newy}")
 
+#List simpan data 
+data_keuangan = []
+
+#Function untuk menambahkan data
+def tambah_data():
+    kategori = entry_kategori.get()
+    jumlah = entry_jumlah.get()
+
+    #Validasi input
+    if kategori == "" or jumlah == "":
+        messagebox.showwarning("Alert!, Kategori dan Jumlah harus diisi!(` ᴖ ´)")
+        return
+    
+    try:
+        jumlah = float(jumlah) #Ini ubah string ke angka
+    except ValueError:
+        messagebox.showerror("Error", "Jumlah harus dimasukkan berupa angka!")
+    return
+
 
 
 window.mainloop()
