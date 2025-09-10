@@ -21,6 +21,9 @@ tk.Label(frame_input, text="Kategori:").grid(row=0, column=0, padx=5, pady=5)
 entry_kategori = tk.Entry(frame_input)
 entry_kategori.grid(row=0, column=1, padx= 10, pady=10)
 
+tk.Label(frame_input, text="Jumlah:").grid(row=1, column=0, padx=5, pady=5)
+entry_jumlah = tk.Entry(frame_input)
+entry_jumlah.grid(row=1, column=1, padx=5, pady=5)
 
 #Mengatur windownya akan muncul ditengah layar
 screenwidth = window.winfo_screenwidth()
