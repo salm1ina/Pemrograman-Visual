@@ -95,4 +95,3 @@ newy = int((screenheight/2) - (tinggi/2))
 
 window.geometry(f"{lebar}x{tinggi}+{newx}+{newy}")
 
-window.mainloop() 
