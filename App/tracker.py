@@ -20,6 +20,18 @@ def tambah_data():
     kategori = entry_kategori.get()
     jumlah_str = entry_jumlah.get()
     
+#Validasi Input
+    if not kategori or not jumlah_str:
+        messagebox.showwarning("Alert", "Kategori dan Jumlah harus diisi!!")
+        return
+    
+    try: 
+        jumlah_str_cleaned = jumlah_str.replace(",", ".").replace(".", "")
+        jumlah = float(jumlah_str_cleaned)
+    except ValueError:
+        messagebox.showerror("Error", "Jumlah harus berupa angka!")
+        return
+
 #Membuat windownya dan atur ukurannya
 window = tk.Tk()
 lebar =600
