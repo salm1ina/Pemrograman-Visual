@@ -79,10 +79,6 @@ tabel.heading("Kategori", text="Kategori")
 tabel.heading("Jumlah", text="Jumlah (Rp)")
 tabel.pack(pady=10, fill="x")
 
-#Label Saldo
-label_saldo = tk.Label(window, text="Total Saldo: Rp 0", font=("Arial", 12, "bold"))
-label_saldo.pack(pady=10)
-
 #Label untuk menampilkan saldo
 label_saldo = tk.Label(window, text="Total Saldo: Rp 0", font=("Product Sans", 12, "bold"))
 label_saldo.pack(pady=10)
