@@ -19,32 +19,7 @@ def tambah_data():
     "Mengambil input, memvalidasi, lalu menambahkan data ke list dan tabel."
     kategori = entry_kategori.get()
     jumlah_str = entry_jumlah.get()
-
-    #Validasi Input
-    if not kategori or not jumlah_str:
-        messagebox.showwarning("Alert", "Kategori dan Jumlah harus diisi!!")
-        return
     
-    try: 
-        jumlah_str_cleaned = jumlah_str.replace(",", ".").replace(".", "")
-        jumlah = float(jumlah_str_cleaned)
-    except ValueError:
-        messagebox.showerror("Error", "Jumlah harus berupa angka!")
-        return
-    
- # Tambahkan data ke list
-    data_keuangan.append((kategori, jumlah))
-    
-    # Tambahkan data ke tabel
-    tabel.insert("", "end", values=(kategori, jumlah))
-
-    # Kosongkan kolom input setelah data ditambahkan
-    entry_kategori.delete(0, tk.END)
-    entry_jumlah.delete(0, tk.END)
-    
-    # Panggil fungsi untuk memperbarui saldo
-    update_saldo() 
-
 #Membuat windownya dan atur ukurannya
 window = tk.Tk()
 lebar =600
