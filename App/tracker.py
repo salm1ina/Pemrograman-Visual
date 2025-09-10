@@ -32,6 +32,19 @@ def tambah_data():
         messagebox.showerror("Error", "Jumlah harus berupa angka!")
         return
 
+ # Tambahkan data ke list
+    data_keuangan.append((kategori, jumlah))
+    
+    # Tambahkan data ke tabel
+    tabel.insert("", "end", values=(kategori, jumlah))
+
+    # Kosongkan kolom input setelah data ditambahkan
+    entry_kategori.delete(0, tk.END)
+    entry_jumlah.delete(0, tk.END)
+    
+    # Panggil fungsi untuk memperbarui saldo
+    update_saldo() 
+
 #Membuat windownya dan atur ukurannya
 window = tk.Tk()
 lebar =600
