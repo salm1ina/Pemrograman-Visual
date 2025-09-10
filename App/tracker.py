@@ -9,7 +9,7 @@ tinggi =600
 #y =100
 
 window.title("Expense Tracker")
-label_judul = tk.Label(window, text="Aplikasi Catatan Keuangan Sederhana ˙𐃷˙", font=("Product Sans", 16, "bold"))
+label_judul = tk.Label(window, text="Aplikasi Catatan Keuangan Sederhana 𐔌՞꜆. ̫.꜀՞𐦯", font=("Product Sans", 16, "bold"))
 label_judul.pack(pady=20)
 
 #Mengatur windownya akan muncul ditengah layar
