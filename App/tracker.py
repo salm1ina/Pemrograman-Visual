@@ -9,8 +9,8 @@ def update_saldo():
     "Menghitung total saldo dari data_keuangan dan memperbarui label."
     try:
         total = sum([jumlah if kategori == "Pemasukan" else -jumlah for kategori, _, jumlah in data_keuangan])
-
         label_saldo.config(text=f"Total saldo: Rp {total:,.0f}")
+
     except (ValueError, IndexError):
         label_saldo.config(text="Total saldo: Rp 0")
 
@@ -62,16 +62,20 @@ frame_input = tk.Frame(window)
 frame_input.pack(pady=8)
 
 tk.Label(frame_input, text="Kategori:").grid(row=0, column=0, padx=5, pady=5)
-entry_kategori = tk.Entry(frame_input)
-entry_kategori.grid(row=0, column=1, padx= 10, pady=10)
+combo_kategori = ttk.Combobox(frame_input, values=["Pemasukan", "Pengeluaran"], state="readonly")
+combo_kategori.grid(row=0, column=1, padx=10, pady=10)
 
-tk.Label(frame_input, text="Jumlah:").grid(row=1, column=0, padx=5, pady=5)
+tk.Label(frame_input, text="Keterangan:").grid(row=1, column=0, padx=5, pady=5)
+entry_keterangan = tk.Entry(frame_input)
+entry_keterangan.grid(row=1, column=1, padx=10, pady=10)
+
+tk.Label(frame_input, text="Jumlah:").grid(row=2, column=0, padx=5, pady=5)
 entry_jumlah = tk.Entry(frame_input)
-entry_jumlah.grid(row=1, column=1, padx=5, pady=5)
+entry_jumlah.grid(row=2, column=1, padx=5, pady=5)
 
 #Button
 btn_tambah = tk.Button(frame_input, text="Tambah", command=tambah_data)
-btn_tambah.grid(row=2, columnspan=2, pady=5)
+btn_tambah.grid(row=4, columnspan=2, pady=5)
 
 #Tabel 
 tabel = ttk.Treeview(window, columns=("Kategori", "Jumlah"), show="headings")
