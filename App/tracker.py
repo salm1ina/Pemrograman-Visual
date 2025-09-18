@@ -10,38 +10,40 @@ def update_saldo():
     try:
         total = sum([jumlah if kategori == "Pemasukan" else -jumlah for kategori, _, jumlah in data_keuangan])
         label_saldo.config(text=f"Total saldo: Rp {total:,.0f}")
-
+  
     except (ValueError, IndexError):
         label_saldo.config(text="Total saldo: Rp 0")
 
 #Fungsi untuk menambahkan data ke dalam tabel dan list 
 def tambah_data():
     "Mengambil input, memvalidasi, lalu menambahkan data ke list dan tabel."
-    kategori = entry_kategori.get()
+    kategori = combo_kategori.get()
+    keterangan = entry_keterangan.get()
     jumlah_str = entry_jumlah.get()
-    
-#Validasi Input
-    if not kategori or not jumlah_str:
-        messagebox.showwarning("Alert", "Kategori dan Jumlah harus diisi!!")
+   
+    # Validasi Input
+    if not kategori or not jumlah_str or not keterangan:
+        messagebox.showwarning("Alert", "Kategori, Keterangan dan Jumlah harus diisi!!")
         return
-    
-    try: 
-        jumlah_str_cleaned = jumlah_str.replace(",", ".").replace(".", "")
+   
+    try:
+        jumlah_str_cleaned = jumlah_str.replace(",", "").replace(".", "")
         jumlah = float(jumlah_str_cleaned)
     except ValueError:
         messagebox.showerror("Error", "Jumlah harus berupa angka!")
         return
 
- # Tambahkan data ke list
-    data_keuangan.append((kategori, jumlah))
-    
+    # Tambahkan data ke list
+    data_keuangan.append((kategori, keterangan, jumlah))
+   
     # Tambahkan data ke tabel
-    tabel.insert("", "end", values=(kategori, jumlah))
+    tabel.insert("", "end", values=(kategori, keterangan, f"Rp {jumlah:,.0f}"))
 
     # Kosongkan kolom input setelah data ditambahkan
-    entry_kategori.delete(0, tk.END)
+    combo_kategori.set("")
+    entry_keterangan.delete(0, tk.END)
     entry_jumlah.delete(0, tk.END)
-    
+   
     # Panggil fungsi untuk memperbarui saldo
     update_saldo() 
 
