@@ -8,7 +8,7 @@ data_keuangan = []
 def update_saldo():
     "Menghitung total saldo dari data_keuangan dan memperbarui label."
     try:
-        total = sum([jumlah for _, jumlah in data_keuangan])
+        total = sum([jumlah if kategori == "Pemasukan" else -jumlah for kategori, _, jumlah in data_keuangan])
 
         label_saldo.config(text=f"Total saldo: Rp {total:,.0f}")
     except (ValueError, IndexError):

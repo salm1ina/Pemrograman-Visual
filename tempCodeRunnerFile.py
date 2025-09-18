@@ -1,62 +1,42 @@
-# Bendera Serbia
-print("\033c")       # Clear
 import numpy as np
 import matplotlib.pyplot as plt
 
-row = int(1080)
-col = int(1920)
+# batas integrasi
+a, b = 0, 3
+N = 1000 
 
-# area merah 
-Rrow1 = int(0.25*row)
-Rrow2 = int(0.416*row)   
-Rcol1 = int(0.25*col)
-Rcol2 = int(0.75*col)
+# fungsi
+def f(x):
+    return x**2
 
-# area biru (tengah)
-Brow1 = int(0.416*row) + 1
-Brow2 = int(0.583*row)
-Bcol1 = int(0.25*col)
-Bcol2 = int(0.75*col)
+# Step 1. generate Data untuk Kurva Fungsi
+x_vals = np.linspace(a, b, 500)
+y_vals = f(x_vals)
 
-# area putih (bawah)
-Wrow1 = int(0.583*row) + 1
-Wrow2 = int(0.75*row)
-Wcol1 = int(0.25*col)
-Wcol2 = int(0.75*col)
+# titik acak (Monte Carlo)
+x_random = np.random.uniform(a, b, N)
+y_random = np.random.uniform(0, b**2, N)  # batas atas y diambil dari max(x^2) = b^2
 
-Gambar = np.zeros(shape=(row, col, 3), dtype=np.int16)
+# pisahkan titik di bawah kurva (inside) dan di atas kurva (outside)
+inside_x = x_random[y_random <= f(x_random)]
+inside_y = y_random[y_random <= f(x_random)]
 
-for i in range(Rrow1, Rrow2+1):
-    for j in range(Rcol1, Rcol2):
-        Gambar[i, j, 0] = 255  
+outside_x = x_random[y_random > f(x_random)]
+outside_y = y_random[y_random > f(x_random)]
 
-for i in range(Brow1, Brow2+1):
-    for j in range(Bcol1, Bcol2):
-        Gambar[i, j, 2] = 255  
+# Step 2. Plot Kurva Fungsi dan Titik Acak
+plt.figure(figsize=(10, 5))
 
-for i in range(Wrow1, Wrow2+1):
-    for j in range(Wcol1, Wcol2):
-        Gambar[i, j, :] = 255  
+# Plot kurva f(x) = x^2
+plt.plot(x_vals, y_vals, color='skyblue', linewidth=2, label='f(x) = x^2')
 
-# --- ROTASI hanya bendera ---
-# ambil potongan bendera
-flag = Gambar[Rrow1:Wrow2+1, Rcol1:Wcol2, :]
+# plot titik random
+plt.scatter(inside_x, inside_y, color='blue', s=10, alpha=0.2, label='Inside (Under Curve)')
+plt.scatter(outside_x, outside_y, color='yellow', s=10, alpha=0.2, edgecolor='black', label='Outside (Above Curve)')
 
-# rotasi 90 derajat searah jarum jam
-flag_rot = np.rot90(flag, k=3)
-
-# buat canvas baru (tetap hitam)
-Gambar2 = np.zeros_like(Gambar)
-
-# cari posisi tengah untuk tempel flag_rot
-fr, fc, _ = flag_rot.shape
-start_r = (row - fr) // 2
-start_c = (col - fc) // 2
-
-# tempelkan bendera yang sudah diputar
-Gambar2[start_r:start_r+fr, start_c:start_c+fc, :] = flag_rot
-
-plt.figure()
-plt.imshow(Gambar2)
+plt.title("Monte Carlo Simulation: Visualization")
+plt.xlabel("x")
+plt.ylabel("y")
+plt.legend()
+plt.grid(True)
 plt.show()
-
