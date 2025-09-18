@@ -55,7 +55,7 @@ tinggi =600
 #y =100
 
 #Judul dan nama aplikasi
-window.title("Expense Tracker")
+window.title("FinKos")
 label_judul = tk.Label(window, text="Aplikasi Catatan Keuangan Sederhana 𐔌՞꜆. ̫.꜀՞𐦯", font=("Product Sans", 16, "bold"))
 label_judul.pack(pady=20)
 
