@@ -4,7 +4,7 @@ from tkinter import ttk, messagebox
 #List untuk menyimpan data keuangan
 data_keuangan = []
 
-def format_uang(angka):
+def format_rp(angka):
     return f"Rp {angka:,.0f}"
 
 # Fungsi untuk menghitung dan update total saldo
