@@ -23,10 +23,6 @@ def update_saldo():
         label_pengeluaran.config(text="Total Pengeluaran: Rp 0")
         label_sisa.config(text="Sisa Saldo: Rp 0")
 
-    except (ValueError, IndexError):
-        label_pemasukan.config(text="Total Pemasukan: Rp 0")
-        label_pengeluaran.config(text="Total Pengeluaran: Rp 0")
-        label_sisa.config(text="Sisa Saldo: Rp 0")
 
 #Fungsi untuk menambahkan data ke dalam tabel dan list 
 def tambah_data():
