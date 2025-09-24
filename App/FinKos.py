@@ -97,7 +97,7 @@ tabel.heading("Kategori", text="Kategori")
 tabel.heading("Keterangan", text="Keterangan")
 tabel.heading("Jumlah", text="Jumlah (Rp)")
 
-# Biar rapi → semua kolom sama lebar
+# Biar rapi, semua kolom sama lebar
 tabel.column("Kategori", width=200, anchor="center")
 tabel.column("Keterangan", width=200, anchor="w")
 tabel.column("Jumlah", width=200, anchor="e")
