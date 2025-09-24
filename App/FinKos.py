@@ -1,13 +1,13 @@
-import tkinter as tk
-from tkinter import ttk, messagebox
+import tkinter as tk                    #import modul tkinter untuk GUI
+from tkinter import ttk, messagebox     #import ttk (widget modern) & messagebox (popup)
 
 #List untuk menyimpan data keuangan
 data_keuangan = []
 
 def format_rp(angka):
-    return f"Rp {angka:,.0f}"
+    return f"Rp {angka:,.0f}"   #fungsi utk format angka jadi Rupiah
 
-# Fungsi untuk menghitung dan update total saldo
+#Fungsi untuk menghitung dan update total saldo
 def update_saldo():
     try:
         total_pemasukan = sum(jumlah for kategori, _, jumlah in data_keuangan if kategori == "Pemasukan")
@@ -46,18 +46,18 @@ def tambah_data():
         messagebox.showerror("Error", "Jumlah harus berupa angka!")
         return
 
-    # Tambahkan data ke list
+    #Tambahkan data ke list
     data_keuangan.append((kategori, keterangan, jumlah))
    
-    # Tambahkan data ke tabel
+    #Tambahkan data ke tabel
     tabel.insert("", "end", values=(kategori, keterangan, format_rp(jumlah)))
 
-    # Kosongkan kolom input setelah data ditambahkan
+    #Kosongkan kolom input setelah data ditambahkan
     combo_kategori.set("")
     entry_keterangan.delete(0, tk.END)
     entry_jumlah.delete(0, tk.END)
    
-    # Panggil fungsi untuk memperbarui saldo
+    #Panggil fungsi untuk memperbarui saldo
     update_saldo() 
 
 #Membuat windownya dan atur ukurannya
@@ -72,7 +72,7 @@ window.title("FinKos")
 label_judul = tk.Label(window, text="Aplikasi Catatan Keuangan Sederhana 𐔌՞꜆. ̫.꜀՞𐦯", font=("Product Sans", 16, "bold"))
 label_judul.pack(pady=20)
 
-# Frame input
+#Frame input
 frame_input = tk.Frame(window)
 frame_input.pack(pady=8)
 
@@ -91,13 +91,13 @@ entry_jumlah.grid(row=2, column=1, padx=5, pady=5)
 btn_tambah = tk.Button(frame_input, text="Tambah", command=tambah_data)
 btn_tambah.grid(row=3, columnspan=2, pady=5)
 
-# Tabel
+#Tabel
 tabel = ttk.Treeview(window, columns=("Kategori", "Keterangan", "Jumlah"), show="headings")
 tabel.heading("Kategori", text="Kategori")
 tabel.heading("Keterangan", text="Keterangan")
 tabel.heading("Jumlah", text="Jumlah (Rp)")
 
-# Biar rapi, semua kolom sama lebar
+#Biar rapi, semua kolom sama lebar
 tabel.column("Kategori", width=200, anchor="center")
 tabel.column("Keterangan", width=200, anchor="w")
 tabel.column("Jumlah", width=200, anchor="e")
