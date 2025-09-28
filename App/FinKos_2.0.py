@@ -5,6 +5,8 @@ from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
                              QPushButton, QTableWidget, QTableWidgetItem, 
                              QMessageBox, QHBoxLayout, QDateEdit, QFrame)
 from PyQt5.QtCore import Qt, QDate
+from PyQt5.QtWidgets import QHeaderView
+
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -183,10 +185,12 @@ class MainWindow(QMainWindow):
         self.table.setHorizontalHeaderLabels(["Tanggal", "Kategori", "Keterangan", "Jumlah"])
         self.table.setAlternatingRowColors(True)
         self.table.horizontalHeader().setStretchLastSection(True)
-        self.table.setColumnWidth(0, 120)  # Tetap
-        self.table.setColumnWidth(1, 150)  # Tetap
-        self.table.setColumnWidth(2, 550)  # Dibuat lebih lebar untuk ukuran baru
-        self.table.setColumnWidth(3, 200)  # Dibuat sedikit lebih lebar
+        header = self.table.horizontalHeader()
+        header.setSectionResizeMode(0, QHeaderView.ResizeToContents)  
+        header.setSectionResizeMode(1, QHeaderView.ResizeToContents)  
+        header.setSectionResizeMode(2, QHeaderView.Stretch)           
+        header.setSectionResizeMode(3, QHeaderView.ResizeToContents)  
+  
         main_layout.addWidget(self.table, stretch=1)
 
         frame_totals = QFrame()
