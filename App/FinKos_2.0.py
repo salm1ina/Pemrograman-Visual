@@ -100,13 +100,18 @@ class MainWindow(QMainWindow):
 
     def init_ui(self):
         self.setWindowTitle("FinKos")
-        self.resize(1300, 1000)  # Ukuran dibuat lebih besar: 1300x1000
+        self.resize(1300, 1000)  
         self.setStyleSheet("""
             background-color: #f5f5f5; 
             QLabel { background-color: #f5f5f5; font-size: 12px; }
             QLineEdit, QComboBox, QDateEdit { 
-                font-size: 20px; padding: 13px; border: 2px solid #ccc; border-radius: 4px; min-width: 200px;
-            }
+            font-size: 26px; 
+            padding: 20px; 
+            border: 20px solid #aaa; 
+            border-radius: 6px; 
+            min-width: 250px;
+}
+
             QTableWidget { 
                 gridline-color: #ddd; font-size: 11px; 
                 alternate-background-color: #f9f9f9; background-color: white;
@@ -117,6 +122,16 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(central_widget)
         main_layout = QVBoxLayout(central_widget)
         main_layout.setSpacing(20)
+
+        title_label = QLabel("Aplikasi Catatan Keuangan Sederhana 💸")
+        title_label.setAlignment(Qt.AlignCenter)
+        title_label.setStyleSheet("""
+            font-size: 40px; 
+            font-weight: bold; 
+            color: #2c3e50; 
+            padding: 15px;
+        """)
+        main_layout.addWidget(title_label)
 
         frame_input = QFrame()
         input_layout = QGridLayout(frame_input)
