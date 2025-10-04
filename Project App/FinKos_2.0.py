@@ -1,3 +1,6 @@
+# Nabila Salsabila Akbar S
+# D121231061 
+
 import sys
 import csv
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout, 
