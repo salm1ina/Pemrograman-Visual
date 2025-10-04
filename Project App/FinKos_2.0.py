@@ -1,5 +1,5 @@
 # Nabila Salsabila Akbar S
-# D121231061 
+# D121231061 - Pemrograman Visual
 
 import sys
 import csv
